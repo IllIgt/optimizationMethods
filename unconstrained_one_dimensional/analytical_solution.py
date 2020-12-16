@@ -20,7 +20,7 @@ def calculated_first_diff(x):
 
 
 def draw(func):
-    x_dots = np.linspace(-15, 15)
+    x_dots = np.linspace(-6, 2)
     y_dots = [func(x) for x in x_dots]
     y_second_diff_dots = [derivative(func, x, n=2) for x in x_dots]
     y_self_calculated_diff = [calculated_first_diff(x) for x in x_dots]
