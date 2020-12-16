@@ -1,5 +1,5 @@
 import pandas as pd
-from .consts import E, B
+from .consts import E, B, DELTA
 
 
 def identify_delta_sign(x, delta, func):
@@ -19,7 +19,7 @@ def fill_data_frame(data_frame, y, y1, x, x1, delta):
     data_frame["delta"].append(delta)
 
 
-def reverse_step(x, delta, func, e=E, visualize=False):
+def reverse_step(x, func, delta=DELTA, e=E, visualize=False):
     delta = abs(delta) * identify_delta_sign(x, delta, func)
     x1 = x + delta
     data_frame = {"y": [], "y1": [], "x": [], "x1": [], "delta": []}
@@ -51,7 +51,7 @@ def reverse_step(x, delta, func, e=E, visualize=False):
     df = pd.DataFrame(data_frame)
 
     if visualize:
-        return df
+        return df, x
     else:
         return x
 

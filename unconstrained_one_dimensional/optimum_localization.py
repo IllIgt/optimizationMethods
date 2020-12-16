@@ -40,6 +40,7 @@ def localize_optimum(x, func, delta=DELTA, e=E, visualize=False):
         x = all_xs[min_x_index - 1 if min_x_index != 0 else min_x_index]
         x4 = all_xs[min_x_index + 1 if min_x_index != len(all_xs)-1 else min_x_index]
 
+    fill_data_frame(x, None, None, None, x4, None, data_frame)
     x_opt = (x4 + x)/2
 
     if visualize:

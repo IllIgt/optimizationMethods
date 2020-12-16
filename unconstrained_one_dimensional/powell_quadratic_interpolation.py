@@ -1,5 +1,5 @@
 from .quadratic_approximation import approximation
-from .consts import E
+from .consts import E, DELTA
 import pandas as pd
 
 
@@ -42,7 +42,7 @@ def powell_pre_calculation(x, func, delta):
     return x, x1, x2, y, y1, func(x2)
 
 
-def powell(x, delta, func, e=E, visualize=False):
+def powell(x, func, delta=DELTA, e=E, visualize=False):
     data_frame = {"x": [], "x1": [], "x2": [], "tx": [], "y": [], "y1": [], "y2": []}
     x, x1, x2, y, y1, y2 = powell_pre_calculation(x, func, delta)
 
@@ -78,6 +78,7 @@ def powell(x, delta, func, e=E, visualize=False):
     if visualize:
         df = pd.DataFrame(data_frame)
         pd.set_option("display.max_rows", None, "display.max_columns", None)
+        pd.options.display.expand_frame_repr = False
         return df
     else:
         return tx

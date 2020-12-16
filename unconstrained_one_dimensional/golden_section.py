@@ -6,7 +6,7 @@ import pandas as pd
 
 def golden_section(x, func, delta=DELTA, k=K, e=E, visualize=False):
     x_uni_start, x_uni_end = init_unimodal_segment(x, func, delta)
-    data_frame = {"a": [], "b": [], "x": [], "x1": [], "y": [], "y1": []}
+    data_frame = {"a": [], "x": [], "x1": [], "b": [], "y": [], "y1": []}
 
     while x_uni_end - x_uni_start > e:
         x = x_uni_start + ((1 - k) * (x_uni_end - x_uni_start))
@@ -20,6 +20,7 @@ def golden_section(x, func, delta=DELTA, k=K, e=E, visualize=False):
         elif y > y1:
             x_uni_start = x
 
+    fill_data_frame(x_uni_start, x_uni_end, None, None, func(x_uni_start), func(x_uni_end), data_frame)
     opt_x = (x_uni_start+x_uni_end)/2
     if visualize:
         return pd.DataFrame(data_frame), opt_x
